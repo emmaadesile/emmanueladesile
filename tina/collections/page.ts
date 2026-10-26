@@ -6,8 +6,9 @@ export const PageCollection: Collection = {
   path: "src/content/page",
   format: "mdx",
   ui: {
+    // index.astro renders home.mdx at "/"; there is no /home page.
     router: ({ document }) => {
-      return `/${document._sys.filename}`;
+      return document._sys.filename === "home" ? "/" : `/${document._sys.filename}`;
     },
   },
   fields: [

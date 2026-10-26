@@ -13,9 +13,10 @@ export function initPortfolio() {
   const toggle = host?.querySelector<HTMLButtonElement>('[data-motion-toggle]');
   const label = host?.querySelector<HTMLElement>('[data-motion-label]');
   const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-  let savedOff = false;
-  try { savedOff = sessionStorage.getItem('portfolio-motion') === 'off'; } catch { /* Storage is optional. */ }
-  let enabled = !reducedMotion.matches && !savedOff && !connection?.saveData;
+  let saved: string | null = null;
+  try { saved = sessionStorage.getItem('portfolio-motion'); } catch { /* Storage is optional. */ }
+  // Reduced motion always wins. Then the visitor's own choice. Data Saver applies only when there is no choice.
+  let enabled = !reducedMotion.matches && (saved ? saved === 'on' : !connection?.saveData);
   let scene: HeroScene | undefined;
   let loading = false;
   let disposed = false;
@@ -38,8 +39,6 @@ export function initPortfolio() {
   });
 
   function updateControl() {
-    // CSS reads this to pause ambient motion, such as the marquee.
-    document.documentElement.dataset.motion = enabled ? 'on' : 'off';
     if (!toggle || !label) return;
     toggle.hidden = false;
     toggle.disabled = reducedMotion.matches || failed;

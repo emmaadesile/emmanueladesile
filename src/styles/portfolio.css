@@ -49,11 +49,6 @@
 .motion-toggle[hidden] { display: none; }
 .motion-toggle__dot { width: 5px; height: 5px; border-radius: 50%; background: #567021; }
 .motion-toggle[aria-pressed='false'] .motion-toggle__dot { background: currentColor; opacity: .4; }
-.expertise-strip { background: var(--acid); color: var(--forest); padding-block: 23px; overflow: clip; }
-.marquee { display: flex; width: max-content; }
-.marquee__group { display: flex; flex-shrink: 0; list-style: none; margin: 0; padding: 0; }
-.marquee__group li { display: flex; align-items: center; gap: clamp(25px, 4vw, 60px); padding-right: clamp(25px, 4vw, 60px); text-transform: uppercase; font-size: 12px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; }
-.marquee__group li span { font-size: 23px; line-height: 1; }
 .portfolio-section { padding-block: 100px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 44px; }
 .portfolio h2 { font-family: var(--font-body); font-weight: 500; font-size: clamp(36px, 4.2vw, 60px); line-height: 1.13; letter-spacing: -.055em; }
@@ -164,9 +159,6 @@ a:hover .roll > span, a:focus-visible .roll > span { transform: translateY(-100%
   @keyframes blueprint-draw { from { stroke-dashoffset: 1; } }
   @keyframes blueprint-fade { from { opacity: 0; } }
 
-  .marquee { animation: marquee 40s linear infinite; }
-  .expertise-strip:hover .marquee, html[data-motion='off'] .marquee { animation-play-state: paused; }
-  @keyframes marquee { to { transform: translateX(-50%); } }
 }
 /* Without scroll-driven animation support, the statement is plain ink text. */
 @supports (animation-timeline: view()) {
@@ -206,9 +198,6 @@ a:hover .roll > span, a:focus-visible .roll > span { transform: translateY(-100%
   .intro__baseline { padding-block: 20px; }
   .intro__baseline > a { font-size: 0; gap: 0; }
   .intro__baseline > a span { font-size: 24px; }
-  .expertise-strip { padding-block: 18px; }
-  .marquee__group li { font-size: 10px; }
-  .marquee__group li span { font-size: 18px; }
   .section-heading { align-items: start; flex-direction: column; gap: 20px; margin-bottom: 30px; }
   .portfolio-section { padding-block: 64px; }
   .portfolio .eyebrow { font-size: 9px; margin-bottom: 20px; }

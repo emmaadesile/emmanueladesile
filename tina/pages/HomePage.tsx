@@ -23,8 +23,6 @@ export default function HomePage(props: Props) {
   const hero = page.hero;
   const work: WorkItem[] = (page.work ?? []).filter((item): item is NonNullable<typeof item> => Boolean(item));
   const posts = props.posts.slice(0, 3);
-  const specialties = hero?.specialties?.filter((name): name is string => Boolean(name)) ?? [];
-  const strip = specialties.length ? specialties : ['Interface engineering', 'Design systems', 'Web performance'];
   const principles = (page.approach ?? []).filter((item): item is NonNullable<typeof item> => Boolean(item));
   const principleList = principles.length ? principles : defaultPrinciples;
 
@@ -58,15 +56,6 @@ export default function HomePage(props: Props) {
           </div>
         </div>
       </section>
-
-      {/* Marquee: the first group is the real list; the copies only fill the loop. */}
-      <div className="expertise-strip" data-tina-field={hero ? tinaField(hero, 'specialties') : undefined}>
-        <div className="marquee">
-          {[0, 1].map(copy => <ul className="marquee__group" key={copy} aria-label={copy === 0 ? 'Specialties' : undefined} aria-hidden={copy === 0 ? undefined : true}>
-            {[...strip, ...strip].map((name, index) => <li key={`${name}-${index}`} aria-hidden={copy === 0 && index >= strip.length ? true : undefined}>{name}<span aria-hidden="true">✳</span></li>)}
-          </ul>)}
-        </div>
-      </div>
 
       <section id="work" className="portfolio-section work-section" aria-labelledby="work-title">
         <div className="container">
