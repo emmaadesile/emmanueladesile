@@ -1,17 +1,25 @@
 {
   "seo": {
-    "title": "ea",
-    "description": "Welcome to my website!",
+    "title": "Emmanuel Adesile \u2014 Senior Frontend Engineer",
+    "description": "Senior Frontend Engineer with 7+ years of experience building thoughtful interfaces, fast websites, and apps that scale.",
     "siteOwner": "Emmanuel Adesile"
   },
   "nav": [
     {
-      "title": "Home",
-      "link": "/"
+      "title": "Work",
+      "link": "/#work"
     },
     {
-      "title": "Blog",
+      "title": "About",
+      "link": "/#about"
+    },
+    {
+      "title": "Writing",
       "link": "/blog"
+    },
+    {
+      "title": "Let\u2019s talk",
+      "link": "/#contact"
     }
   ],
   "contactLinks": [

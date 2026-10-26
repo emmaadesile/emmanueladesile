@@ -1,9 +1,7 @@
-import React from 'react';
 import { tinaField, useTina } from "tinacms/dist/react";
 import type { BlogQuery, BlogQueryVariables } from '../__generated__/types';
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import FormattedDate from '../../src/components/react/FormattedDate.tsx';
-
 
 type Props = {
 	variables: BlogQueryVariables;
@@ -22,29 +20,49 @@ export default function AdminBlogPost(props: Props) {
 	const blog = data.blog;
 
 	return (
-		<article>
-			<div data-tina-field={tinaField(blog, "heroImage")} className="hero-image">
-				{blog.heroImage && <img width={1020} height={510} src={blog.heroImage} alt="" />}
-			</div>
-			<div className="prose">
-				<div className="title">
-					<div className="date" data-tina-field={tinaField(blog, "pubDate")} >
-						<FormattedDate date={blog.pubDate} />
-						{
-							blog.updatedDate && (
-								<div className="last-updated-on" data-tina-field={tinaField(blog, "updatedDate")} >
-									Last updated on <FormattedDate date={blog.updatedDate} />
-								</div>
-							)
-						}
-					</div>
-					<h1 data-tina-field={tinaField(blog, "title")} >{blog.title}</h1>
-					<hr />
+		<article className="article">
+			<header className="article__header">
+				<p className="label">
+					<span className="label__index">//</span>
+					<span>post</span>
+				</p>
+
+				<h1 className="article__title" data-tina-field={tinaField(blog, "title")}>
+					{blog.title}
+				</h1>
+
+				{blog.description && (
+					<p className="article__lede" data-tina-field={tinaField(blog, "description")}>
+						{blog.description}
+					</p>
+				)}
+
+				<p className="article__meta" data-tina-field={tinaField(blog, "pubDate")}>
+					{blog.pubDate && <FormattedDate date={blog.pubDate} />}
+					{blog.updatedDate && (
+						<span data-tina-field={tinaField(blog, "updatedDate")}>
+							{" · updated "}
+							<FormattedDate date={blog.updatedDate} />
+						</span>
+					)}
+				</p>
+			</header>
+
+			{blog.heroImage && (
+				<div className="article__hero" data-tina-field={tinaField(blog, "heroImage")}>
+					<img width={1020} height={510} src={blog.heroImage} alt="" />
 				</div>
-				<div data-tina-field={tinaField(blog, "body")}>
-					<TinaMarkdown content={blog.body} />
-				</div>
+			)}
+
+			<div className="prose" data-tina-field={tinaField(blog, "body")}>
+				<TinaMarkdown content={blog.body} />
 			</div>
+
+			<p className="article__back">
+				<a href="/blog">
+					<span className="row-arrow" aria-hidden="true">←</span> All posts
+				</a>
+			</p>
 		</article>
 	);
 }

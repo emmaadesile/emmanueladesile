@@ -18,10 +18,20 @@ const TinaPage = (props: Props) => {
 	const page = data.page;
 
 	return (
-		<main>
-			<div data-tina-field={tinaField(page, "body")}>
-				<TinaMarkdown content={page.body} />
-			</div>
+		<main id="main" className="container">
+			<section className="section">
+				<header className="section__head">
+					<p className="label">
+						<span className="label__index">//</span>
+						<span>{page.seoTitle?.toLowerCase()}</span>
+					</p>
+					<h1 className="page-title">{page.seoTitle}</h1>
+				</header>
+
+				<div className="prose" data-tina-field={tinaField(page, "body")}>
+					<TinaMarkdown content={page.body} />
+				</div>
+			</section>
 		</main>
 	)
 }

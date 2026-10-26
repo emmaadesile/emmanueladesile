@@ -6,15 +6,15 @@ const blog = defineCollection({
     const postsResponse = await client.queries.blogConnection();
 
     // Map Tina posts to the correct format for Astro
-    return postsResponse.data.blogConnection.edges
-      ?.filter((post) => !!post)
-      .map((post) => {
+    return (postsResponse.data.blogConnection.edges ?? [])
+      .flatMap((post) => {
         const node = post?.node;
+        if (!node) return [];
 
         return {
           ...node,
-          id: node?._sys.relativePath.replace(/\.mdx?$/, ""), // Generate clean URLs
-          tinaInfo: node?._sys, // Include Tina system info if needed
+          id: node._sys.relativePath.replace(/\.mdx?$/, ""), // Generate clean URLs
+          tinaInfo: node._sys, // Include Tina system info if needed
         };
       });
   },
@@ -38,15 +38,15 @@ const page = defineCollection({
     const postsResponse = await client.queries.pageConnection();
 
     // Map Tina posts to the correct format for Astro
-    return postsResponse.data.pageConnection.edges
-      ?.filter((p) => !!p)
-      .map((p) => {
+    return (postsResponse.data.pageConnection.edges ?? [])
+      .flatMap((p) => {
         const node = p?.node;
+        if (!node) return [];
 
         return {
           ...node,
-          id: node?._sys.relativePath.replace(/\.mdx?$/, ""), // Generate clean URLs
-          tinaInfo: node?._sys, // Include Tina system info if needed
+          id: node._sys.relativePath.replace(/\.mdx?$/, ""), // Generate clean URLs
+          tinaInfo: node._sys, // Include Tina system info if needed
         };
       });
   },

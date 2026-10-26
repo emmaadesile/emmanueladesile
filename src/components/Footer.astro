@@ -1,33 +1,22 @@
 ---
-import config from "../content/config/config.json";
-import IconLink from "./react/IconLink";
-const today = new Date();
+import config from '../content/config/config.json';
+
+const year = new Date().getFullYear();
 ---
-	<footer class="copyright-footer">
-		&copy; {today.getFullYear()}
-		{config.seo.siteOwner}. All rights reserved.
-	</footer>
 
-<style>
-	.copyright-footer {
-		padding: 2em 1em 2em 1em;
-		text-align: center;
-		font-size: 1rem;
-	}
+<footer class="site-footer">
+	<div class="container site-footer__inner">
+		<span>&copy; {year} {config.seo.siteOwner}</span>
 
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>
+		<div class="social-links">
+			{
+				config.contactLinks.map((link) => (
+					<a href={link.link} target="_blank" rel="noopener noreferrer">
+						{link.title}
+						<span aria-hidden="true">↗</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</footer>
