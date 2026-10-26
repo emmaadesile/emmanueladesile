@@ -2,6 +2,8 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
+import bodyFont from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import displayFont from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -15,15 +17,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
 
+<link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
-
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -46,5 +47,26 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Resolve the theme before first paint so there is no flash. -->
+<script is:inline>
+	(function () {
+		function applyTheme() {
+			var stored = null;
+			try {
+				stored = localStorage.getItem('theme');
+			} catch (e) {}
+			var theme =
+				stored ||
+				(window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark'
+					: 'light');
+			document.documentElement.setAttribute('data-theme', theme);
+		}
+		applyTheme();
+		// ClientRouter replaces the document on navigation — reapply after each swap.
+		document.addEventListener('astro:after-swap', applyTheme);
+	})();
+</script>
 
 <ClientRouter />
