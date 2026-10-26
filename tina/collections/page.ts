@@ -43,13 +43,6 @@ export const PageCollection: Collection = {
           description: "Used in the hero introduction.",
         },
         {
-          name: "facts",
-          label: "Facts",
-          type: "string",
-          list: true,
-          description: "Bulleted row along the bottom of the hero",
-        },
-        {
           name: "portrait",
           label: "Portrait",
           type: "image",
