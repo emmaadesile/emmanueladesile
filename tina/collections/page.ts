@@ -31,13 +31,6 @@ export const PageCollection: Collection = {
           description: "Large uppercase line, e.g. \"Frontend Engineer\"",
         },
         {
-          name: "specialties",
-          label: "Specialties",
-          type: "string",
-          list: true,
-          description: "Expertise strip below the hero.",
-        },
-        {
           name: "givenName",
           label: "Given name",
           type: "string",
