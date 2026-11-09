@@ -38,14 +38,6 @@ export function Footer() {
       </div>
 
       <div className="footer__grid shell">
-        <div className="footer__intro">
-          <span className="footer__id font-mono">EA</span>
-          <p className="label footer__role">
-            {site.role} — {site.location}
-          </p>
-          <p className="footer__blurb">{site.intro}</p>
-        </div>
-
         <nav className="footer__col" aria-label="Work">
           <span className="label">01 Work</span>
           <ul>

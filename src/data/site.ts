@@ -31,10 +31,10 @@ export const site = {
   email: "hello@emmanueladesile.com", // PLACEHOLDER
 
   socials: [
-    { label: "Github", href: "#", handle: "@emmanueladesile" }, // PLACEHOLDER
-    { label: "LinkedIn", href: "#", handle: "in/emmanueladesile" }, // PLACEHOLDER
-    { label: "Twitter", href: "#", handle: "@emmanueladesile" }, // PLACEHOLDER
-    { label: "Email", href: "mailto:hello@emmanueladesile.com", handle: "" }, // PLACEHOLDER
+    { label: "Github", href: "https://github.com/emmaadesile", handle: "@emmanueladesile" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/emmaadesile", handle: "in/emmanueladesile" },
+    { label: "Twitter", href: "https://twitter.com/emmaadesile", handle: "@emmanueladesile" },
+    { label: "Email", href: "mailto:hello@emma2adesile.com", handle: "" }, 
   ],
 
   nav: [
